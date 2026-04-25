@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sree Balaji Constructions – Chennai</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1628;
+    --navy-mid: #162240;
+    --gold: #C9A227;
+    --gold-light: #E8C547;
+    --white: #FFFFFF;
+    --grey: #8A8F9E;
+    --light-grey: #F4F5F7;
+    --concrete: #D6D3CC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: transparent;
+    transition: background 0.4s, backdrop-filter 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(11,22,40,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,162,39,0.15);
+  }
+  .nav-logo {
+    display: flex; flex-direction: column; line-height: 1;
+  }
+  .nav-logo .brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .nav-logo .sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 4px;
+    color: var(--concrete); text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy);
+    border: none; padding: 11px 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* hamburger */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--white); transition: all 0.3s; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #0B1628 0%, #1a2d4a 50%, #0d2040 100%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,162,39,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,162,39,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-img-placeholder {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 55%;
+    background: linear-gradient(135deg, #1a2d4a 0%, #0d2040 100%);
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    overflow: hidden;
+  }
+  .hero-img-placeholder img {
+    width: 100%; height: 100%; object-fit: cover; opacity: 0.45;
+  }
+  .hero-img-placeholder .img-hint {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+    color: rgba(255,255,255,0.2);
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .hero-img-placeholder .img-hint svg { opacity: 0.3; }
+  .hero-overlay {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 55%;
+    background: linear-gradient(to right, var(--navy) 0%, transparent 40%);
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 60px; max-width: 700px;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 28px;
+  }
+  .hero-tag::before {
+    content: ''; display: block; width: 36px; height: 1px; background: var(--gold);
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 6vw, 80px);
+    line-height: 1.05; font-weight: 900;
+    margin-bottom: 24px;
+  }
+  h1 em { font-style: normal; color: var(--gold); }
+  .hero-sub {
+    font-size: 16px; color: rgba(255,255,255,0.65);
+    line-height: 1.7; max-width: 460px; margin-bottom: 40px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 60px; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 16px 32px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.3s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.3); color: var(--white);
+    padding: 16px 32px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.3s; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-trust { display: flex; gap: 28px; flex-wrap: wrap; }
+  .trust-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; letter-spacing: 1px;
+    color: rgba(255,255,255,0.55);
+  }
+  .trust-item::before {
+    content: '✔'; color: var(--gold); font-size: 11px;
+  }
+  .hero-scroll {
+    position: absolute; bottom: 32px; left: 60px; z-index: 2;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+  .scroll-line {
+    width: 1px; height: 48px; background: rgba(201,162,39,0.4);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:0.4;height:48px} 50%{opacity:1;height:64px} }
+
+  /* ─── SECTION BASE ─── */
+  section { position: relative; }
+  .section-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-tag::before { content:''; width:28px; height:1px; background:var(--gold); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px); font-weight: 700; line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .section-title em { font-style: normal; color: var(--gold); }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: var(--navy); padding: 120px 60px;
+  }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center; max-width: 1200px; margin: 0 auto;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img {
+    width: 100%; aspect-ratio: 4/3;
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,162,39,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.15);
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    position: relative; overflow: hidden;
+  }
+  .about-img img { width:100%;height:100%;object-fit:cover;position:absolute;inset:0; }
+  .about-badge {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--gold); color: var(--navy);
+    width: 120px; height: 120px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .about-badge .num { font-size: 40px; font-weight: 900; line-height: 1; }
+  .about-badge .label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+  .about-text { }
+  .about-desc {
+    font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.8;
+    margin-bottom: 32px;
+  }
+  .about-points { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+  .about-point {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 14px; color: rgba(255,255,255,0.8);
+  }
+  .about-point::before {
+    content: '';
+    width: 6px; height: 6px; background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ─── STATS ─── */
+  #stats {
+    background: var(--gold); padding: 70px 60px;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; max-width: 1200px; margin: 0 auto;
+  }
+  .stat-item {
+    text-align: center; padding: 20px;
+    border-right: 1px solid rgba(11,22,40,0.15);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 56px; font-weight: 900; line-height: 1;
+    color: var(--navy);
+  }
+  .stat-label {
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(11,22,40,0.65); margin-top: 6px;
+  }
+
+  /* ─── SERVICES ─── */
+  #services {
+    background: #080F1C; padding: 120px 60px;
+  }
+  .services-header { max-width: 1200px; margin: 0 auto 60px; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(201,162,39,0.1);
+    max-width: 1200px; margin: 0 auto;
+    border: 1px solid rgba(201,162,39,0.1);
+  }
+  .service-card {
+    background: #0B1628; padding: 40px 36px;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .service-card:hover { background: var(--navy-mid); }
+  .service-icon {
+    width: 48px; height: 48px; margin-bottom: 20px;
+    color: var(--gold);
+  }
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; margin-bottom: 10px;
+  }
+  .service-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+  .service-line {
+    width: 32px; height: 2px; background: var(--gold);
+    margin-top: 20px;
+    transition: width 0.3s;
+  }
+  .service-card:hover .service-line { width: 56px; }
+
+  /* ─── PROJECTS ─── */
+  #projects {
+    background: var(--navy); padding: 120px 60px;
+  }
+  .projects-header { max-width: 1200px; margin: 0 auto 60px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; max-width: 1200px; margin: 0 auto;
+  }
+  .project-card {
+    position: relative; overflow: hidden;
+    cursor: pointer;
+  }
+  .project-img {
+    width: 100%; aspect-ratio: 4/3;
+    background: var(--navy-mid);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.15); font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; overflow: hidden;
+    transition: transform 0.5s;
+  }
+  .project-img img { width:100%;height:100%;object-fit:cover;position:absolute;inset:0; transition: transform 0.5s; }
+  .project-card:hover .project-img { transform: scale(1.04); }
+  .project-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(11,22,40,0.95) 0%, transparent 60%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 28px;
+  }
+  .project-tag {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 6px;
+  }
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; margin-bottom: 6px;
+  }
+  .project-meta { font-size: 13px; color: rgba(255,255,255,0.5); }
+  .project-card.large { grid-column: span 2; }
+  .project-card.large .project-img { aspect-ratio: 16/9; }
+
+  /* ─── BEFORE AFTER ─── */
+  #before-after {
+    background: #080F1C; padding: 120px 60px;
+  }
+  .ba-header { max-width: 1200px; margin: 0 auto 60px; }
+  .ba-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+  .ba-card { position: relative; overflow: hidden; }
+  .ba-card-inner {
+    position: relative; overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+  .ba-side {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    overflow: hidden;
+  }
+  .ba-side img { width:100%;height:100%;object-fit:cover; }
+  .ba-before { background: #1a1a2e; color:rgba(255,255,255,0.2); }
+  .ba-after {
+    background: var(--navy-mid); color: rgba(255,255,255,0.2);
+    clip-path: inset(0 50% 0 0);
+    transition: clip-path 0.5s ease;
+  }
+  .ba-card:hover .ba-after { clip-path: inset(0 0% 0 0); }
+  .ba-divider {
+    position: absolute; top:0; bottom:0; left:50%; width:2px;
+    background: var(--gold); z-index: 3;
+    transition: left 0.5s ease;
+  }
+  .ba-card:hover .ba-divider { left:100%; }
+  .ba-labels {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 4;
+    display: flex; justify-content: space-between; padding: 12px 16px;
+    background: linear-gradient(to top, rgba(11,22,40,0.9), transparent);
+  }
+  .ba-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+  .ba-label.after-label { color: var(--gold); }
+  .ba-title { margin-top: 14px; font-size: 15px; color: rgba(255,255,255,0.8); }
+
+  /* ─── WHY US ─── */
+  #why {
+    background: var(--navy); padding: 120px 60px;
+  }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1200px; margin: 0 auto; align-items: center; }
+  .why-points { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .why-point {
+    padding: 28px 24px;
+    border: 1px solid rgba(201,162,39,0.15);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .why-point:hover { border-color: var(--gold); background: rgba(201,162,39,0.04); }
+  .why-icon { color: var(--gold); margin-bottom: 14px; }
+  .why-point-title { font-family: 'Playfair Display', serif; font-size: 16px; margin-bottom: 8px; }
+  .why-point-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials {
+    background: #080F1C; padding: 120px 60px;
+  }
+  .testi-header { max-width: 1200px; margin: 0 auto 60px; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+  .testi-card {
+    background: var(--navy); padding: 36px;
+    border-top: 2px solid var(--gold);
+    border-left: 1px solid rgba(201,162,39,0.1);
+    border-right: 1px solid rgba(201,162,39,0.1);
+    border-bottom: 1px solid rgba(201,162,39,0.1);
+  }
+  .testi-quote {
+    font-size: 36px; color: var(--gold); line-height: 1; margin-bottom: 16px;
+    font-family: 'Playfair Display', serif;
+  }
+  .testi-text { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 24px; }
+  .testi-author { font-size: 13px; color: var(--gold); font-weight: 600; }
+  .testi-loc { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+
+  /* ─── PROCESS ─── */
+  #process {
+    background: var(--navy); padding: 120px 60px;
+  }
+  .process-header { max-width: 1200px; margin: 0 auto 60px; }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 0; max-width: 1200px; margin: 0 auto;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 28px; left: 10%; right: 10%;
+    height: 1px; background: rgba(201,162,39,0.3);
+  }
+  .process-step { text-align: center; padding: 0 12px; position: relative; }
+  .step-num {
+    width: 56px; height: 56px; background: var(--navy);
+    border: 1px solid var(--gold);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px; font-weight: 700; color: var(--gold);
+    margin: 0 auto 16px;
+    position: relative; z-index: 1;
+  }
+  .step-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .step-desc { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+  /* ─── FOUNDER ─── */
+  #founder {
+    background: var(--navy-mid); padding: 100px 60px;
+    border-top: 1px solid rgba(201,162,39,0.15);
+    border-bottom: 1px solid rgba(201,162,39,0.15);
+  }
+  .founder-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 360px 1fr; gap: 80px; align-items: center; }
+  .founder-img {
+    position: relative;
+  }
+  .founder-photo {
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--navy);
+    border: 1px solid rgba(201,162,39,0.2);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.15); font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; overflow:hidden;
+  }
+  .founder-photo img { width:100%;height:100%;object-fit:cover; }
+  .founder-accent {
+    position: absolute; top: 20px; left: 20px; right: -20px; bottom: -20px;
+    border: 1px solid rgba(201,162,39,0.2); z-index: -1;
+  }
+  .founder-role {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .founder-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; font-weight: 700; margin-bottom: 24px;
+  }
+  .founder-desc { font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.8; margin-bottom: 28px; }
+  .founder-sig {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; color: var(--gold); font-style: italic;
+  }
+
+  /* ─── CTA BANNER ─── */
+  #cta-banner {
+    background: var(--gold); padding: 80px 60px; text-align: center;
+  }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 56px); font-weight: 900;
+    color: var(--navy); margin-bottom: 16px;
+  }
+  .cta-sub { font-size: 16px; color: rgba(11,22,40,0.65); margin-bottom: 36px; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-dark {
+    background: var(--navy); color: var(--white);
+    padding: 16px 36px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.3s; display: inline-block; border: 2px solid transparent;
+  }
+  .btn-dark:hover { background: transparent; color: var(--navy); border-color: var(--navy); }
+  .btn-outline-dark {
+    background: transparent; color: var(--navy);
+    padding: 16px 36px; border: 2px solid var(--navy);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.3s; display: inline-block;
+  }
+  .btn-outline-dark:hover { background: var(--navy); color: var(--white); }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--navy); padding: 120px 60px;
+  }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1200px; margin: 0 auto; }
+  .contact-info .section-title { margin-bottom: 32px; }
+  .contact-items { display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
+  .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+  .contact-icon {
+    width: 44px; height: 44px; background: rgba(201,162,39,0.1);
+    border: 1px solid rgba(201,162,39,0.2);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); flex-shrink: 0;
+  }
+  .contact-detail .label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--grey); margin-bottom: 4px; }
+  .contact-detail .value { font-size: 16px; color: var(--white); }
+  .wa-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #25D366; color: white;
+    padding: 14px 28px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.3s;
+  }
+  .wa-btn:hover { background: #1fb955; transform: translateY(-2px); }
+
+  /* form */
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--grey); }
+  .form-group input, .form-group textarea, .form-group select {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white); padding: 14px 16px;
+    font-family: 'Barlow', sans-serif; font-size: 14px;
+    outline: none; width: 100%;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--gold);
+  }
+  .form-group select option { background: var(--navy); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-submit {
+    background: var(--gold); color: var(--navy);
+    border: none; padding: 16px 32px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer; width: 100%;
+    transition: background 0.3s;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #040B14; padding: 60px;
+    border-top: 1px solid rgba(201,162,39,0.1);
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; }
+  .footer-brand .brand { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); }
+  .footer-brand .sub { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 4px; color: var(--grey); text-transform: uppercase; }
+  .footer-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 16px; }
+  .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.3s; }
+  .footer-col ul a:hover { color: var(--gold); }
+  .footer-bottom { max-width: 1200px; margin: 40px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  /* ─── WHATSAPP FLOAT ─── */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    width: 56px; height: 56px; background: #25D366;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;
+    animation: waPop 1s ease 2s both;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+  @keyframes waPop { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+  .wa-float svg { width: 28px; height: 28px; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links.open { display: flex; flex-direction: column; gap: 20px; position: absolute; top: 100%; left: 0; right: 0; background: rgba(11,22,40,0.98); padding: 24px; }
+
+    #hero { min-height: 100vh; }
+    .hero-content { padding: 0 24px; padding-top: 100px; max-width: 100%; }
+    .hero-img-placeholder { display: none; }
+    h1 { font-size: 42px; }
+
+    #about, #services, #projects, #before-after, #why, #testimonials, #process, #founder, #contact { padding: 80px 24px; }
+    .about-grid, .why-grid, .contact-grid, .founder-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-badge { right: 0; bottom: -12px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat-item:nth-child(2) { border-right: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.large { grid-column: span 1; }
+    .project-card.large .project-img { aspect-ratio: 4/3; }
+    .ba-grid { grid-template-columns: 1fr; }
+    .why-points { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    #cta-banner { padding: 60px 24px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+    footer { padding: 40px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    .projects-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <span class="brand">Sree Balaji</span>
+    <span class="sub">Constructions · Chennai</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get Free Quote</a>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-img-placeholder">
+    <!-- Replace with your building photo -->
+    <div class="img-hint">
+      <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 21h18M9 21V7l6-4v18M9 11h6"/></svg>
+      Add Building Photo Here
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Est. Chennai · Since [Year]</div>
+    <h1>Building <em>Dreams</em><br>Into Reality</h1>
+    <p class="hero-sub">Trusted residential construction &amp; renovation experts in Chennai. Quality workmanship. Honest pricing. On-time delivery.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Our Work</a>
+      <a href="#contact" class="btn-outline">Get Free Quote</a>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-item">Quality Workmanship</span>
+      <span class="trust-item">Transparent Pricing</span>
+      <span class="trust-item">Timely Delivery</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="3">0</div>
+      <div class="stat-label">Projects Completed</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="10">0</div>
+      <div class="stat-label">Renovation Works</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="100">0</div>
+      <div class="stat-label">% Client Satisfaction</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">✓</div>
+      <div class="stat-label">Transparent Pricing</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap reveal">
+      <div class="about-img">
+        <!-- Replace img tag below with your photo -->
+        <span>Add Project Photo</span>
+      </div>
+      <div class="about-badge">
+        <span class="num">+</span>
+        <span class="label">Years of Trust</span>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <div class="section-tag">Who We Are</div>
+      <h2 class="section-title">A Family-Run Business Built on <em>Trust</em></h2>
+      <p class="about-desc">At Sree Balaji Constructions, we specialize in residential construction, remodeling, and renovation with a focused commitment to quality workmanship and complete customer satisfaction. Every project we take is handled with personal attention and honest execution.</p>
+      <div class="about-points">
+        <div class="about-point">Family-run with hands-on involvement in every project</div>
+        <div class="about-point">Honest and transparent pricing — no hidden costs</div>
+        <div class="about-point">Premium quality materials at every stage</div>
+        <div class="about-point">Regular site updates &amp; open communication</div>
+        <div class="about-point">Timely delivery — always</div>
+      </div>
+      <a href="#contact" class="btn-primary">Start Your Project</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-tag">What We Do</div>
+    <h2 class="section-title">Our <em>Services</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 21h18M9 21V7l6-4v18M9 11h6"/></svg>
+      <div class="service-title">New Home Construction</div>
+      <div class="service-desc">Complete residential construction from foundation to finishing. We build your dream home with precision.</div>
+      <div class="service-line"></div>
+    </div>
+    <div class="service-card reveal">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2 20h20M4 20V10l8-6 8 6v10M10 20v-5h4v5"/></svg>
+      <div class="service-title">Villa Construction</div>
+      <div class="service-desc">Luxury villas with modern elevations, premium materials, and elegant interiors crafted to perfection.</div>
+      <div class="service-line"></div>
+    </div>
+    <div class="service-card reveal">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      <div class="service-title">Interior Renovation</div>
+      <div class="service-desc">Full interior upgrades — tiles, false ceilings, flooring, painting, and modern finishes.</div>
+      <div class="service-line"></div>
+    </div>
+    <div class="service-card reveal">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <div class="service-title">Kitchen Remodeling</div>
+      <div class="service-desc">Transform your kitchen into a modern, functional space with quality cabinetry and fittings.</div>
+      <div class="service-line"></div>
+    </div>
+    <div class="service-card reveal">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+      <div class="service-title">Bathroom Upgrades</div>
+      <div class="service-desc">Modern bathroom renovations with premium fixtures, tiles, and waterproofing done right.</div>
+      <div class="service-line"></div>
+    </div>
+    <div class="service-card reveal">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M12 6v6l4 2"/></svg>
+      <div class="service-title">Painting &amp; Waterproofing</div>
+      <div class="service-desc">Professional exterior and interior painting. Long-lasting waterproofing solutions.</div>
+      <div class="service-line"></div>
+    </div>
+    <div class="service-card reveal">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <div class="service-title">Structural Repair</div>
+      <div class="service-desc">Fixing structural issues, cracks, dampness, and re-strengthening aging buildings with expert care.</div>
+      <div class="service-line"></div>
+    </div>
+    <div class="service-card reveal">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+      <div class="service-title">Turnkey Projects</div>
+      <div class="service-desc">End-to-end project management — design, construction, interiors, finishing. You move in, we handle the rest.</div>
+      <div class="service-line"></div>
+    </div>
+    <div class="service-card reveal">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0H5m14 0h2M5 21H3"/></svg>
+      <div class="service-title">Commercial Construction</div>
+      <div class="service-desc">Office spaces, showrooms, and commercial buildings built with the same quality we bring to homes.</div>
+      <div class="service-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header">
+    <div>
+      <div class="section-tag reveal">Selected Works</div>
+      <h2 class="section-title reveal">Our Recent <em>Projects</em></h2>
+    </div>
+    <a href="#contact" class="btn-outline reveal" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;padding:12px 24px;border:1px solid rgba(255,255,255,0.25);transition:all .3s;" onmouseover="this.style.borderColor='#C9A227';this.style.color='#C9A227'" onmouseout="this.style.borderColor='rgba(255,255,255,0.25)';this.style.color='rgba(255,255,255,0.7)'">Discuss Your Project →</a>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card large reveal">
+      <div class="project-img" style="background:#1a2d4a;">
+        <!-- Add project image here -->
+        <span style="position:absolute;z-index:1;">Add Project 1 Photo</span>
+      </div>
+      <div class="project-overlay">
+        <div class="project-tag">Residential · Chennai</div>
+        <div class="project-title">Modern Duplex Residence</div>
+        <div class="project-meta">2400 sq ft · 8 Months · Full Construction</div>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-img" style="background:#162035;">
+        <span style="position:absolute;z-index:1;">Add Project 2 Photo</span>
+      </div>
+      <div class="project-overlay">
+        <div class="project-tag">Renovation · Chennai</div>
+        <div class="project-title">Full Home Renovation</div>
+        <div class="project-meta">Painting + Kitchen + Tiles</div>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-img" style="background:#12263f;">
+        <span style="position:absolute;z-index:1;">Add Project 3 Photo</span>
+      </div>
+      <div class="project-overlay">
+        <div class="project-tag">Villa · Chennai</div>
+        <div class="project-title">Independent Villa</div>
+        <div class="project-meta">G+1 Floor · Modern Elevation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE AFTER -->
+<section id="before-after">
+  <div class="ba-header">
+    <div class="section-tag reveal">Transformations</div>
+    <h2 class="section-title reveal">Before &amp; <em>After</em></h2>
+    <p style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:8px;" class="reveal">Hover over each card to reveal the transformation.</p>
+  </div>
+  <div class="ba-grid">
+    <div class="ba-card reveal">
+      <div class="ba-card-inner">
+        <div class="ba-side ba-before">Before</div>
+        <div class="ba-side ba-after">After</div>
+        <div class="ba-divider"></div>
+        <div class="ba-labels">
+          <span class="ba-label">Before</span>
+          <span class="ba-label after-label">After</span>
+        </div>
+      </div>
+      <div class="ba-title">Kitchen Remodel</div>
+    </div>
+    <div class="ba-card reveal">
+      <div class="ba-card-inner">
+        <div class="ba-side ba-before">Before</div>
+        <div class="ba-side ba-after">After</div>
+        <div class="ba-divider"></div>
+        <div class="ba-labels">
+          <span class="ba-label">Before</span>
+          <span class="ba-label after-label">After</span>
+        </div>
+      </div>
+      <div class="ba-title">Exterior Renovation</div>
+    </div>
+    <div class="ba-card reveal">
+      <div class="ba-card-inner">
+        <div class="ba-side ba-before">Before</div>
+        <div class="ba-side ba-after">After</div>
+        <div class="ba-divider"></div>
+        <div class="ba-labels">
+          <span class="ba-label">Before</span>
+          <span class="ba-label after-label">After</span>
+        </div>
+      </div>
+      <div class="ba-title">Bathroom Upgrade</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why-grid">
+    <div>
+      <div class="section-tag reveal">Why Choose Us</div>
+      <h2 class="section-title reveal">We Don't Just Build Structures.<br><em>We Build Trust.</em></h2>
+      <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.8;margin-top:16px;" class="reveal">At Sree Balaji Constructions, your investment is protected by our commitment to honest dealing, quality execution, and open communication at every stage.</p>
+    </div>
+    <div class="why-points">
+      <div class="why-point reveal">
+        <div class="why-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622C17.176 19.29 21 14.591 21 9c0-1.052-.125-2.06-.355-3.016z"/></svg>
+        </div>
+        <div class="why-point-title">No Hidden Costs</div>
+        <div class="why-point-desc">Complete transparent pricing. What we quote is what you pay.</div>
+      </div>
+      <div class="why-point reveal">
+        <div class="why-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+        </div>
+        <div class="why-point-title">On-Time Delivery</div>
+        <div class="why-point-desc">We respect deadlines. Every project delivered on schedule.</div>
+      </div>
+      <div class="why-point reveal">
+        <div class="why-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+        </div>
+        <div class="why-point-title">Premium Materials</div>
+        <div class="why-point-desc">Only quality-certified materials used at every stage of work.</div>
+      </div>
+      <div class="why-point reveal">
+        <div class="why-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 0 0-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 0 1 5.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0"/></svg>
+        </div>
+        <div class="why-point-title">Skilled Team</div>
+        <div class="why-point-desc">Experienced, trained workers dedicated to clean &amp; precise finishing.</div>
+      </div>
+      <div class="why-point reveal">
+        <div class="why-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 0 1-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        </div>
+        <div class="why-point-title">Regular Site Updates</div>
+        <div class="why-point-desc">Photos and progress updates so you're always in the loop.</div>
+      </div>
+      <div class="why-point reveal">
+        <div class="why-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 0 0 0 6.364L12 20.364l7.682-7.682a4.5 4.5 0 0 0-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 0 0-6.364 0z"/></svg>
+        </div>
+        <div class="why-point-title">Personalized Service</div>
+        <div class="why-point-desc">Family-run means you deal directly with us — no middlemen.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testi-header">
+    <div class="section-tag reveal">Client Reviews</div>
+    <h2 class="section-title reveal">What Clients <em>Say</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-text">Very professional team. The finishing was very neat and the project was completed exactly on time. Would recommend to anyone looking for honest builders in Chennai.</div>
+      <div class="testi-author">Mr. Rajkumar</div>
+      <div class="testi-loc">Homeowner · Chennai</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-text">Excellent renovation work within our budget. They were transparent about every cost and there were zero surprises. The kitchen transformation was outstanding.</div>
+      <div class="testi-author">Mrs. Priya</div>
+      <div class="testi-loc">Renovation Client · Chennai</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-text">Reliable people and genuine quality construction. I trusted them with my villa project and they delivered beyond expectations. Very happy with the result.</div>
+      <div class="testi-author">Mr. Venkatesh</div>
+      <div class="testi-loc">Villa Project · Chennai</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="process-header">
+    <div class="section-tag reveal">How We Work</div>
+    <h2 class="section-title reveal">Our <em>Process</em></h2>
+  </div>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Free Consultation</div>
+      <div class="step-desc">Call or WhatsApp us. We understand your needs.</div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">Site Visit</div>
+      <div class="step-desc">We visit your site and assess requirements in detail.</div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">Estimate &amp; Plan</div>
+      <div class="step-desc">Detailed cost estimate and project plan with timeline.</div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">Work Begins</div>
+      <div class="step-desc">Construction starts with skilled team and quality materials.</div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">05</div>
+      <div class="step-title">Progress Updates</div>
+      <div class="step-desc">Regular photos and updates shared with you throughout.</div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">06</div>
+      <div class="step-title">Final Handover</div>
+      <div class="step-desc">Quality inspection and smooth handover of your project.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="founder-inner">
+    <div class="founder-img reveal">
+      <div class="founder-photo">
+        <!-- Add founder/dad's photo here -->
+        <span>Add Photo</span>
+      </div>
+      <div class="founder-accent"></div>
+    </div>
+    <div class="reveal">
+      <div class="founder-role">Meet The Builder</div>
+      <div class="founder-name">[Founder Name]</div>
+      <p class="founder-desc">A hands-on construction professional with years of real-world experience, personally overseeing every project from groundbreaking to final handover. At Sree Balaji Constructions, we believe every client deserves direct attention, honest communication, and results they can be proud of.</p>
+      <p class="founder-desc">"Our work speaks for itself. I believe in doing it right — not just fast."</p>
+      <div class="founder-sig">[Founder Name]</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section id="cta-banner">
+  <div class="cta-title">Ready to Build Your Dream Space?</div>
+  <div class="cta-sub">From renovations to new constructions — we handle it all. Get a free site visit today.</div>
+  <div class="cta-btns">
+    <a href="tel:+919999999999" class="btn-dark">📞 Call Us Now</a>
+    <a href="https://wa.me/919999999999" class="btn-outline-dark" target="_blank">💬 WhatsApp Us</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="section-tag reveal">Get In Touch</div>
+      <h2 class="section-title reveal">Start Your <em>Project</em></h2>
+      <div class="contact-items">
+        <div class="contact-item reveal">
+          <div class="contact-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          </div>
+          <div class="contact-detail">
+            <div class="label">Phone</div>
+            <div class="value">+91 99999 99999</div>
+          </div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
+          </div>
+          <div class="contact-detail">
+            <div class="label">Email</div>
+            <div class="value">info@sreebalajiconstructions.com</div>
+          </div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"/><path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg>
+          </div>
+          <div class="contact-detail">
+            <div class="label">Location</div>
+            <div class="value">Chennai, Tamil Nadu</div>
+          </div>
+        </div>
+      </div>
+      <a href="https://wa.me/919999999999" class="wa-btn" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+    <div class="reveal">
+      <form class="contact-form" onsubmit="handleForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Full Name" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+91 XXXXX XXXXX" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label>Service Required</label>
+          <select>
+            <option>New Home Construction</option>
+            <option>Villa Construction</option>
+            <option>Interior Renovation</option>
+            <option>Kitchen Remodeling</option>
+            <option>Bathroom Upgrade</option>
+            <option>Painting &amp; Waterproofing</option>
+            <option>Structural Repair</option>
+            <option>Turnkey Project</option>
+            <option>Commercial Construction</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Message</label>
+          <textarea placeholder="Tell us about your project — location, size, timeline..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Enquiry →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand">Sree Balaji Constructions</div>
+      <div class="sub">Chennai · Est. [Year]</div>
+      <p class="footer-desc">Building trust one project at a time. Residential and commercial construction experts in Chennai with a commitment to quality, honesty, and timely delivery.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">New Construction</a></li>
+        <li><a href="#services">Villa Projects</a></li>
+        <li><a href="#services">Renovation</a></li>
+        <li><a href="#services">Kitchen Remodel</a></li>
+        <li><a href="#services">Waterproofing</a></li>
+        <li><a href="#services">Turnkey Projects</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+919999999999">+91 99999 99999</a></li>
+        <li><a href="mailto:info@sreebalajiconstructions.com">Email Us</a></li>
+        <li><a href="https://wa.me/919999999999">WhatsApp</a></li>
+        <li><a href="#contact">Chennai, Tamil Nadu</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Sree Balaji Constructions. All rights reserved.</div>
+    <div class="footer-copy">Built with trust in Chennai.</div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919999999999" class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // NAV scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile nav toggle
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Counter animation
+  function animateCounter(el) {
+    const target = parseInt(el.getAttribute('data-target'));
+    if (!target) return;
+    let current = 0;
+    const step = Math.ceil(target / 40);
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current + (target === 100 ? '%' : '+');
+      if (current >= target) clearInterval(timer);
+    }, 40);
+  }
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('#stats').forEach(el => statObserver.observe(el));
+
+  // Form handler
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = '✔ Enquiry Sent!';
+    btn.style.background = '#25D366';
+    setTimeout(() => { btn.textContent = 'Send Enquiry →'; btn.style.background = ''; }, 3000);
+  }
+
+  // Smooth reveal with stagger for grid items
+  document.querySelectorAll('.services-grid .service-card, .projects-grid .project-card, .testi-grid .testi-card, .ba-grid .ba-card, .why-points .why-point').forEach((el, i) => {
+    el.style.transitionDelay = (i % 3) * 0.1 + 's';
+  });
+</script>
+</body>
+</html>
